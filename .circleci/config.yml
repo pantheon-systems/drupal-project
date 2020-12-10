@@ -24,5 +24,3 @@ workflows:
             branches:
               only:
                 - release
-                - core-2237-author-enforcement-v2
-                - release-test
