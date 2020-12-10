@@ -52,7 +52,7 @@ for commit in "${commits[@]}"; do
 done
 
 # update the release-pointer
-git tag -f -m 'Last commit set on upstream repo' release-pointer "$commit"
+git tag -f -m 'Last commit set on upstream repo' release-pointer HEAD
 
 # Push released commits to a few branches on the upstream repo.
 # Since all commits to this repo are automated, it shouldn't hurt to put them on both branch names.
