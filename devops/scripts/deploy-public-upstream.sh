@@ -6,9 +6,9 @@ set -euo pipefail
 
 . devops/scripts/commit-type.sh
 
-git remote add public $UPSTREAM_REPO_REMOTE_URL
+git remote add public "$UPSTREAM_REPO_REMOTE_URL"
 git fetch public
-git checkout release
+git checkout "${CIRCLE_BRANCH}"
 
 # List commits between release-pointer and HEAD, in reverse
 newcommits=$(git log release-pointer..HEAD --reverse --pretty=format:"%h")
@@ -16,7 +16,7 @@ commits=()
 
 # Identify commits that should be released
 for commit in $newcommits; do
-  commit_type=$(identify_commit_type $commit)
+  commit_type=$(identify_commit_type "$commit")
   if [[ $commit_type == "normal" ]] ; then
     commits+=($commit)
   fi
@@ -58,7 +58,7 @@ git tag -f -m 'Last commit set on upstream repo' release-pointer "$commit"
 # Since all commits to this repo are automated, it shouldn't hurt to put them on both branch names.
 release_branches=('master' 'main')
 for branch in "${release_branches[@]}"; do
-  git push public public:$branch
+  git push public public:"$branch"
 done
 
 # Push release-pointer
