@@ -9,7 +9,6 @@ There are some atypical development and release procedures in use with this repo
  1. Merging a PR to `default` _does not_ create a new release of `pantheon-upstreams/drupal-project`. This allows us to
     batch more than one relatively small change into a single new "release" such that the number of separate update
     events appearing on customer dashboards is more controlled.
-    
 
 ## Differences between `pantheon-upstreams` and `pantheon-systems` repos:
  1. Commits modifying the `.circleci` directory, `devops` directory or this file are omitted from `pantheon-upstreams`.
@@ -18,7 +17,7 @@ There are some atypical development and release procedures in use with this repo
     However, it means **you must not create commits that modify both .circleci and other files** in the same commit.
  2. Commit authors are rewritten to `Pantheon Automation <bot@getpantheon.com>` as a request from Product. The author
     names appear on the dashboard and this creates a more professional presentation.
-    
+
 ## Cutting a new release
  1. Update CHANGELOG.md. In the past, the copy has been created in consultation with Ari / product.
  1. Ensure the commit message for the last commit in this release says what we want to have appearing on the
@@ -28,3 +27,17 @@ There are some atypical development and release procedures in use with this repo
     * Typically the CHANGELOG.md commit is the last one and so is the one whose commit message should be wordsmithed.
  1. Trigger the new release to `pantheon-upstreams` by `--ff-only`-merging `default` into `release` and pushing the 
     result. A CircleCI job causes the release to be created.
+
+## Branch protections and their rationale
+
+### In pantheon-systems
+ 1. The `default` branch does not accept merge commits. This is because this branch serves as the staging area for
+    commits queued to be released to site upstreams, and the commit messages appear on customer dashboards as
+    available updates. Preventing `Merged "[CORE-1234] Added widget to branch default [#62]"`-style commit messages
+    enhances the user experience.
+
+### In pantheon-upstreams
+ 1. All branches do not accept pushes, except by GitHub user `pantheon-circleci` and owners of the `pantheon-upstreams`
+    organization, because GitHub hardcodes those users as able to push. This is just to avoid accidental direct pushes,
+    because commits to the upstreams repo are supposed to be made only from CircleCI as part of an intentional release
+    with the commit authors rewritten.
