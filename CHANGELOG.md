@@ -16,7 +16,6 @@ All notable changes specific to pantheon-upstreams/drupal-project are noted here
 ### Changed
 
 - Allow site-level customization of Drush version. (#5)
-
 - Allow sites to downgrade to Drupal 8.8.  (#6)
 - Use optimized autoloader in Test and Live, but not Dev or Multidev (#8)
 
