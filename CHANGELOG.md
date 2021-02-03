@@ -9,7 +9,6 @@ All notable changes specific to pantheon-upstreams/drupal-project are noted here
 ### Added
 
 - Add changelog to track Pantheon-specific changes to pantheon-upstreams/pantheon-project. (#10)
-
 - Two repositories for release management. Pull requests accepted at https://github.com/pantheon-systems/drupal-project and releases located at https://github.com/pantheon-upstreams/drupal-project. (#4,#5)
 
 
