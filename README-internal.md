@@ -31,7 +31,7 @@ There are some atypical development and release procedures in use with this repo
     git fetch
     git checkout release && git pull
     git merge --ff-only origin/default
-    git push
+    git push origin release
     ```
     A CircleCI job causes the release to be created.
 
