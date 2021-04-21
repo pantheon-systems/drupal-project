@@ -7,7 +7,6 @@
         {
             "type": "composer",
             "url": "https://packages.drupal.org/8"
-
         },
         {
             "type": "path",
@@ -16,8 +15,8 @@
     ],
     "require": {
         "pantheon-upstreams/upstream-configuration": "*",
-        "drush/drush": "^10",
-        "composer/installers": "^1.9"
+        "composer/installers": "^1.9",
+        "drush/drush": "^10"
     },
     "conflict": {
         "drupal/drupal": "*"
@@ -63,12 +62,25 @@
         "patchLevel": {
             "drupal/core": "-p2"
         },
-        "config": {
-            "preferred-install": "dist",
-            "sort-packages": true,
-            "platform": {
-                "php": "7.4"
+        "drupal-scaffold": {
+            "allowed-packages": [
+                "pantheon-systems/drupal-integrations"
+            ],
+            "locations": {
+                "web-root": "./web"
+            },
+            "file-mapping": {
+                "[project-root]/.editorconfig": false,
+                "[project-root]/pantheon.upstream.yml": false,
+                "[project-root]/.gitattributes": false
             }
+        }
+    },
+    "config": {
+        "preferred-install": "dist",
+        "sort-packages": true,
+        "platform": {
+            "php": "7.4"
         }
     }
 }
