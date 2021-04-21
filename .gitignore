@@ -131,3 +131,4 @@ upstream/web/
 
 # Ignore .env files as they are personal
 #/.env
+composer-backup-*.json
