@@ -61,17 +61,26 @@ export ORGANIZATION=$(terminus site:info ${OLD_SITE_NAME} --format=json | jq -r 
 export ORG_COMMAND_SWITCH=$([[ ! -z "${ORGANIZATION}" ]] && echo "--org=${ORGANIZATION}" || "")
 ```
 
+## main()
+
 1. Create a new sandbox on pantheon where the new site will reside
 
    - ```terminus site:create ${NEW_SITE_NAME} "${NEW_SITE_LABEL}" drupal9 ${ORG_COMMAND_SWITCH}```
 
+2. Clone new site and go to the cloneed dir.
 
-2. Clone new site
+   - ```$(`terminus connection:info ${NEW_SITE_NAME}.dev --format=json | jq -r ".git_command"`)```
+   - ```cd ${NEW_SITE_NAME}```
 
-   - ```terminus ```
+3. Clone the Old site:
 
-3. terminus
-4. Modules
+   ```$(`terminus connection:info ${OLD_SITE_NAME}.dev --format=json | jq -r ".git_command"`)```
+
+4. Make sure that git ignores the old site's codebase:
+
+   ```echo "/${OLD_SITE_NAME}" >> .gitignore```
+   ```git add .gitignore && git commit -m 'adding old sites codebase to gitignore'```
+
 5. Themes
 6. Javascript libraries
 7. Terminus plan:move
