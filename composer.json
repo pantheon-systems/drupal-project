@@ -7,6 +7,7 @@
     {
       "type": "composer",
       "url": "https://packages.drupal.org/8"
+
     },
     {
       "type": "path",
