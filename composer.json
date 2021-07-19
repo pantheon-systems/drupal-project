@@ -14,13 +14,13 @@
         }
     ],
     "require": {
-        "pantheon-upstreams/upstream-configuration": "*",
+        "pantheon-upstreams/upstream-configuration": "self.version",
         "drush/drush": "^10"
     },
     "conflict": {
             "drupal/drupal": "*"
     },
-    "minimum-stability": "dev",
+    "minimum-stability": "alpha",
     "prefer-stable": true,
     "extra": {
         "installer-paths": {
